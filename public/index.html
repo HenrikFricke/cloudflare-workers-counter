@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cloudflare Workers</title>
+    <link rel="stylesheet" href="//unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+    <script src="//unpkg.com/alpinejs" defer></script>    
+  </head>
+  <body>
+    <main class="container" x-data="counter">
+      <h1>Counter</h1>
+      <p>
+        Value: <span x-text="formattedValue"></span>
+      </p>
+      <section class="grid">
+        <button @click="increase()">
+          Increase
+        </button>
+        <button @click="decrease()">
+          Decrease
+        </button>
+      </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>

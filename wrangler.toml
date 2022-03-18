@@ -1,12 +1,32 @@
-name = "cloudflare-worker-ts"
+name = "cloudflare-workers-counter"
 type = "javascript"
-zone_id = ""
-account_id = ""
-route = ""
+account_id = "cd1d60691b4fc017ca4eeb9301b63642"
 workers_dev = true
 compatibility_date = "2022-03-18"
+kv_namespaces = [
+  { binding = "DATA", id = "3cda3e01df4347fe8aad53cc803af307", preview_id = "b14a1f7b405c427f88c9e7d9ac2dacf4" }
+]
+
+[env.staging]
+kv_namespaces = [
+  { binding = "DATA", id = "59fe91256c1541a682df243cfbd57541" }
+]
+
+[env.production]
+kv_namespaces = [
+  { binding = "DATA", id = "5c316283e14d48ca8309636bc1d8b46a" }
+]
+
+[site]
+bucket = "./public"
+entry-point = "."
 
 [build]
-command = "npm install && npm run build"
+command = "npm run build"
+
 [build.upload]
-format = "service-worker"
+format = "modules"
+main = "index.mjs"
+
+[dev]
+port = 9000

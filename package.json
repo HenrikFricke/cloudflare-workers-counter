@@ -1,39 +1,19 @@
 {
-  "name": "worker-typescript-template",
+  "name": "cloudflare-workers-counter",
   "version": "1.0.0",
-  "description": "Cloudflare worker TypeScript template",
-  "main": "dist/worker.js",
+  "description": "Simple counter w/ Cloudflare Workers + Workers KV + Alpine.js",
+  "main": "dist/index.mjs",
+  "type": "module",
   "scripts": {
-    "build": "webpack",
-    "format": "prettier --write  '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
-    "lint": "eslint --max-warnings=0 src && prettier --check '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
-    "test": "jest --config jestconfig.json --verbose"
+    "start": "wrangler dev",
+    "build": "esbuild src/index.ts --bundle --format=esm --outdir=dist --out-extension:.js=.mjs --external:__STATIC_CONTENT_MANIFEST",
+    "publish": "wrangler publish"
   },
-  "author": "author",
-  "license": "MIT OR Apache-2.0",
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "typescript",
-      "prettier"
-    ]
-  },
+  "author": "Henrik Fricke <henrikfricke@web.de>",
+  "license": "MIT",
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.0.0",
-    "@types/jest": "^26.0.23",
-    "@types/service-worker-mock": "^2.0.1",
-    "@typescript-eslint/eslint-plugin": "^4.16.1",
-    "@typescript-eslint/parser": "^4.16.1",
-    "eslint": "^7.21.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-config-typescript": "^3.0.0",
-    "jest": "^27.0.1",
-    "prettier": "^2.3.0",
-    "service-worker-mock": "^2.0.5",
-    "ts-jest": "^27.0.1",
-    "ts-loader": "^9.2.2",
-    "typescript": "^4.3.2",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
+    "@cloudflare/wrangler": "^1.19.9",
+    "esbuild": "^0.14.27",
+    "worktop": "^0.8.0-next.12"
   }
 }
